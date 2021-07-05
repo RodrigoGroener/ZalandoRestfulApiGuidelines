@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using ZalandoRestfulApiGuidelinesWebApi.OpenApi;
 
 namespace ZalandoRestfulApiGuidelinesWebApi
 {
