@@ -1,17 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using ZalandoRestfulApiGuidelinesWebApi.OpenApi;
 
 namespace ZalandoRestfulApiGuidelinesWebApi
 {
@@ -28,10 +24,27 @@ namespace ZalandoRestfulApiGuidelinesWebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers(options =>
+                {
+                    //use lowercase separate words with hyphens for path segments https://opensource.zalando.com/restful-api-guidelines/#129
+                    options.Conventions.Add(new RouteTokenTransformerConvention(new SlugifyParameterTransformer()));
+                })
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver
+                    {
+                        //property names must be ASCII snake_case (and never camelCase) https://opensource.zalando.com/restful-api-guidelines/#118
+                        NamingStrategy = new SnakeCaseNamingStrategy()
+                    };
+
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter());
+                });
+
+            services.AddSwaggerGenNewtonsoftSupport();
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ZalandoRestfulApiGuidelinesWebApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title = "ZalandoRestfulApiGuidelinesWebApi", Version = "v1"});
             });
         }
 
