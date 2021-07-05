@@ -7,9 +7,9 @@ Zalando’s RESTful API Guidelines describes in detail how they design RESTful A
 use of an `RouteTokenTransformerConvention` to conform to this rule.
 
 
-### MUST property names must be ASCII snake_case (and never camelCase): `^[a-z_][a-z_0-9]*$` [118](https://opensource.zalando.com/restful-api-guidelines/#118)
+### MUST property names must be ASCII snake_case (and never camelCase): `^[a-z_][a-z_0-9]*$` [#118](https://opensource.zalando.com/restful-api-guidelines/#118)
 use of `SnakeCaseNamingStrategy` for JSON Bodys from Newtonsoft.Json
 
 
-### MUST use snake_case (never camelCase) for query parameters [130](https://opensource.zalando.com/restful-api-guidelines/#130)
+### MUST use snake_case (never camelCase) for query parameters [#130](https://opensource.zalando.com/restful-api-guidelines/#130)
 use of `FromQueryAttribute`
