@@ -1,4 +1,4 @@
-# ZalandoRestfulApiGuidelines
+# Configure ASP.NET Core 5.0 to conform to the Zalando’s RESTful API Guidelines
 
 Zalando’s RESTful API Guidelines describes in detail how they design RESTful APIs. This sample app  demonstrates how configure ASP.NET Core 5.0 Web APIs to conform to three specific rules regarding path and JSON body layout. For that propose I modified the sample application “Weather Forecast” starter template.
 
