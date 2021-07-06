@@ -11,7 +11,6 @@ namespace ZalandoRestfulApiGuidelinesWebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
     [Consumes("application/json")]
     [Produces("application/json")]
     [ApiConventionType(typeof(ApiConventions))]
